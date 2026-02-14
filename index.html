@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mylota Fitness</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Define a common clean font if Google Sites allows basic CSS within the embed */
+        body { font-family: Arial, Helvetica, sans-serif; }
+        .teal-bg { background-color: #0d9488; }
+        .teal-text { color: #0d9488; }
+        .shadow-sm { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); }
+        .rounded-lg { border-radius: 8px; }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 9999px; /* Pill shape */
+            transition: background-color 0.3s;
+        }
+
+        /* Styles for the Mobile App Mockup */
+        .phone-mockup {
+            border: 12px solid #2d3748; /* Dark border simulating phone casing */
+            border-radius: 30px;
+            
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            width: 200px; /* Fixed width for better control in an embed */
+            height: 400px; /* Fixed height for aspect ratio */
+            margin: 20px auto; /* Center the mockup */
+            position: relative;
+            overflow: hidden;
+            background-color: #fff;
+        }
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 18px; /* Inner screen border radius */
+            object-fit: cover;
+        }
+        /* Simple notch simulation */
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30%;
+            height: 6px;
+            background: #2d3748;
+            border-radius: 0 0 3px 3px;
+            z-index: 10;
+        }
+
+        /* Card background colors */
+        .card { padding: 20px; text-align: center; } /* Add some padding and center text */
+        .card-color-1 { background-color: #ccfbf1; color: #115e59; } /* Light Teal */
+        .card-color-2 { background-color: #dcfce7; color: #166534; } /* Light Green */
+        .card-color-3 { background-color: #e0f2fe; color: #0c4a6e; } /* Light Blue */
+        .card-color-4 { background-color: #fef9c3; color: #713f12; } /* Light Yellow */
+
+        footer {
+            color: #4a5568; /* Gray text color for footer */
+        }
+        footer a {
+            color: #4a5568; /* Match link color to footer text */
+            text-decoration: none;
+        }
+
+        /* Hero Section Gradient */
+        .hero {
+            background: linear-gradient(135deg, #0d9488, #ccfbf1);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Feature Icons */
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* How It Works Section Styling */
+        .how-it-works .steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .how-it-works .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .how-it-works .step span {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            background-color: #0d9488;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        /* Product Card Styling */
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(42, 127, 103, 0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .product-card .price {
+            color: #2A7F67;
+            font-weight: 700;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .product-card .btn {
+            width: 100%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Mylota Fitness</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="about.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="shop.html">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+
+
+<section class="hero">
+    <div class="hero-content">
+        <h2>Embark on Your Wellness Journey</h2>
+        <p>Build healthier habits with simple tracking and daily guidance. Mylota helps you stay on track with your fitness goals.</p>
+        <a class="btn" href="#">Download App</a>
+        </div>
+       <!-- Mobile App Screen Mockup -->
+            <div class="phone-mockup">
+                <!-- Placeholder Image representing the MyLota Dashboard -->
+                <img src="https://placehold.co/400x800/0d9488/ffffff?text=MyLota%20Dashboard" 
+                     alt="MyLota Fitness App"
+                     class="phone-screen">
+            </div>
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="mylota.apk" class="button teal-bg" style="color: white; margin: 5px;" download>Android APK</a>
+                <a href="#" class="button" style="background-color: #1a1a1a; color: white; margin: 5px;">Download for iOS</a>
+            </div>
+   
+</section>
+
+<section id="features" class="section">
+    <h2>Core Highlights</h2>
+        <div class="grid">
+        <div class="card rounded-lg shadow-sm card-color-1">
+            <img src="https://placehold.co/150/ccfbf1/115e59?text=Tasks" alt="To-Do Tracking" class="feature-icon">
+            <h3>Smart To-Do Tracking</h3>
+            <p>Organize your day and prioritize your health tasks effortlessly.</p>
+        </div>
+        <div class="card rounded-lg shadow-sm card-color-2">
+            <img src="https://placehold.co/150/dcfce7/166534?text=Meals" alt="Meal Planning" class="feature-icon">
+            <h3>Meal Planning</h3>
+            <p>Plan your meals, track your nutrition, and discover healthy recipes.</p>
+        </div>
+        <div class="card rounded-lg shadow-sm card-color-3">
+            <img src="https://placehold.co/150/e0f2fe/0c4a6e?text=Water" alt="Water Reminder" class="feature-icon">
+            <h3>Water Reminder</h3>
+            <p>Stay hydrated with timely reminders throughout your busy day.</p>
+        </div>
+        <div class="card rounded-lg shadow-sm card-color-4">
+            <img src="https://placehold.co/150/fef9c3/713f12?text=Sleep" alt="Sleep Timer" class="feature-icon">
+            <h3>Sleep & Activity Timer</h3>
+            <p>Monitor your sleep patterns and track your physical activities.</p>
+        </div>
+    </div>
+</section> 
+
+<section class="section how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+        <div class="step"><span>1</span><h3>Download</h3><p>Get the app from the App Store or Google Play.</p></div>
+        <div class="step"><span>2</span><h3>Set Goals</h3><p>Define your personal health and fitness objectives.</p></div>
+        <div class="step"><span>3</span><h3>Track</h3><p>Start tracking your habits and see your progress.</p></div>
+    </div>
+</section>
+
+<!-- Add this new section to your site (could go in index.html after "How It Works") -->
+<section class="section">
+    <h2>Recommended Wellness Products</h2>
+    <p style="color: #666; margin-bottom: 30px;">Complement your Mylota journey with these trusted products</p>
+    <p style="font-size: 0.9em; color: #999; margin-bottom: 20px;"><em>As an Amazon Associate, we earn from qualifying purchases.</em></p>
+    
+    <div class="grid">
+        <div class="card product-card">
+            <img src="https://placehold.co/200x150/0d9488/ffffff?text=Water+Bottle" alt="Smart Water Bottle" width="200" height="150">
+            <h3>Smart Water Bottle</h3>
+            <p>Track your hydration with a smart bottle that syncs with Mylota.</p>
+            <p class="price">$39.99</p>
+            <a href="https://amazon.com/s?k=smart+water+bottle&YOUR_AFFILIATE_ID" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+        </div>
+        
+        <div class="card product-card">
+            <img src="https://placehold.co/200x150/0d9488/ffffff?text=Fitness+Tracker" alt="Fitness Tracker Watch" width="200" height="150">
+            <h3>Fitness Tracker Watch</h3>
+            <p>Monitor sleep, steps, and heart rate alongside Mylota tracking.</p>
+            <p class="price">$89.99</p>
+            <a href="https://amazon.com/s?k=fitness+tracker+watch&YOUR_AFFILIATE_ID" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+        </div>
+        
+        <div class="card product-card">
+            <img src="https://placehold.co/200x150/0d9488/ffffff?text=Yoga+Mat" alt="Premium Yoga Mat" width="200" height="150">
+            <h3>Premium Yoga Mat</h3>
+            <p>Perfect for home workouts tracked with Mylota.</p>
+            <p class="price">$34.99</p>
+            <a href="https://amazon.com/s?k=yoga+mat&YOUR_AFFILIATE_ID" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2025 Mylota Fitness • <a href="privacy.html">Privacy Policy</a> • All Rights Reserved
+    <br><small style="color: #999; margin-top: 10px; display: block;">Mylota Fitness is a participant in the Amazon Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.</small>
+</footer>
+
+</body>
+</html>

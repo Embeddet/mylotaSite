@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact – Mylota Fitness</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .contact-hero {
+            background: linear-gradient(135deg, #0d9488, #ccfbf1);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 50px auto;
+        }
+        .contact-info {
+            padding: 30px;
+        }
+        .contact-info h3 {
+            color: #0d9488;
+            margin-bottom: 20px;
+        }
+        .contact-method {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .contact-method:last-child {
+            border-bottom: none;
+        }
+        .contact-method h4 {
+            color: #0d9488;
+            margin-bottom: 5px;
+        }
+        .contact-method p {
+            color: #6b7280;
+        }
+        .contact-method a {
+            color: #0d9488;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .contact-form {
+            background: #f9fafb;
+            padding: 30px;
+            border-radius: 12px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #374151;
+            font-weight: 600;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-family: Arial, sans-serif;
+            font-size: 1em;
+        }
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 12px;
+            background: #0d9488;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .form-group button:hover {
+            background: #0a7367;
+        }
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Mylota Fitness</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="about.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="shop.html">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html" class="active">Contact</a>
+    </nav>
+</header>
+
+<section class="contact-hero">
+    <h2>Get In Touch</h2>
+    <p>Have questions? We'd love to hear from you!</p>
+</section>
+
+<section class="section">
+    <div class="contact-container">
+        <div class="contact-info">
+            <h3>Contact Information</h3>
+            
+            <div class="contact-method">
+                <h4>📧 Email</h4>
+                <p><a href="mailto:support@mylotafitness.com">support@mylotafitness.com</a></p>
+                <small>Typically respond within 24 hours</small>
+            </div>
+            
+            <div class="contact-method">
+                <h4>💬 Live Chat</h4>
+                <p>Chat with us during business hours (9 AM - 6 PM EST)</p>
+                <small>Available Monday - Friday</small>
+            </div>
+            
+            <div class="contact-method">
+                <h4>📞 Phone</h4>
+                <p><a href="tel:+18005551234">(800) 555-1234</a></p>
+                <small>Mon - Fri, 9 AM - 6 PM EST</small>
+            </div>
+            
+            <div class="contact-method">
+                <h4>🌐 Social Media</h4>
+                <p>
+                    <a href="https://twitter.com/mylotafitness" target="_blank">Twitter</a> • 
+                    <a href="https://instagram.com/mylotafitness" target="_blank">Instagram</a> • 
+                    <a href="https://facebook.com/mylotafitness" target="_blank">Facebook</a>
+                </p>
+            </div>
+        </div>
+        
+        <div class="contact-form">
+            <h3 style="color: #0d9488; margin-bottom: 20px;">Send us a Message</h3>
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    © 2025 Mylota Fitness • <a href="privacy.html">Privacy Policy</a> • All Rights Reserved
+    <br><small style="color: #999; margin-top: 10px; display: block;">Mylota Fitness is a participant in the Amazon Associates Program.</small>
+</footer>
+
+</body>
+</html>
