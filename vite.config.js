@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 // Pre-mapped mock database for Amazon products to guarantee sync in case of scraping blocks
 const mockAmazonDb = {
   "B006DDGCI2": { title: "Silentnight Deep Sleep Pillows 2-Pack", price: "£14.99", image: "assets/sleep.jpg" },
-  "B0BP2DV75V": { title: "Trebo Insulated Water Bottle 1.2L", price: "£19.99", image: "assets/water.jpg" },
+  "B0BP2DV75V": { title: "Trebo Insulated Water Bottle 1.2L", price: "£19.99", image: "assets/trebo_bottle.png" },
   "B0FBRYYPWV": { title: "FitVille Men's Extra Wide Running Shoes", price: "£59.99", image: "assets/Exercise.jpg" },
   "B0G6CVJB1G": { title: "KKTOTO Running Trainers", price: "£21.99", image: "assets/Exercise.jpg" },
   "B08XYZ4444": { title: "Smart Body Scale", price: "$59.99", image: "assets/progress_new.jpg" },
@@ -246,8 +246,13 @@ export default defineConfig({
                 if (titleMatch && titleMatch[1]) {
                   scrapedTitle = titleMatch[1].trim();
                 }
-                
-                // If we got valid scraped info, return it!
+
+                // For the Trebo water bottle, force the local high-quality image asset we generated
+                 if (asin === 'B0BP2DV75V') {
+                   scrapedImage = 'assets/trebo_bottle.png';
+                 }
+
+                 // If we got valid scraped info, return it!
                 if (scrapedPrice && (scrapedImage || scrapedTitle)) {
                   // If the scraped price is in a foreign currency, fall back to mock
                   const isUk = domain.endsWith('.co.uk');
