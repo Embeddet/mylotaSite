@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop – Mylota Fitness</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/logo_new.png">
     <style>
         .shop-hero {
             background: linear-gradient(135deg, #0d9488, #ccfbf1);
@@ -53,6 +56,7 @@
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
         .product-card:hover {
             transform: translateY(-8px);
@@ -62,6 +66,7 @@
             width: 100%;
             height: 200px;
             object-fit: cover;
+            transition: opacity 0.3s ease;
         }
         .product-info {
             padding: 20px;
@@ -76,12 +81,14 @@
             font-size: 0.9em;
             margin-bottom: 15px;
             line-height: 1.5;
+            min-height: 54px; /* Align text blocks */
         }
         .product-card .price {
             color: #0d9488;
             font-weight: 700;
             font-size: 1.3em;
             margin-bottom: 12px;
+            display: inline-block;
         }
         .product-card .btn {
             width: 100%;
@@ -96,6 +103,7 @@
             text-decoration: none;
             display: block;
             text-align: center;
+            box-sizing: border-box;
         }
         .product-card .btn:hover {
             background: #0a7367;
@@ -104,12 +112,39 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            background: #ef4444;
+            background: #0d9488;
             color: white;
-            padding: 5px 10px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 0.8em;
+            font-size: 0.75em;
             font-weight: bold;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        /* Syncing Animation Styles */
+        .sync-loading {
+            position: relative;
+            background-color: #f1f5f9 !important;
+            color: transparent !important;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .sync-loading::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            animation: pulse-loading 1.5s infinite;
+        }
+        @keyframes pulse-loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
     </style>
 </head>
@@ -151,261 +186,284 @@
     <div class="product-grid">
         <!-- Hydration Products -->
         <div class="product-card" data-category="hydration">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Smart+Water+Bottle" alt="Smart Water Bottle">
+            <div class="product-badge">
+                <svg style="width:12px; height:12px; fill:currentColor;" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/></svg>
+                Syncing Live
+            </div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/water.jpg" alt="Smart Water Bottle" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Smart Water Bottle</h3>
                 <p>AI-powered hydration tracking with app integration and temperature control.</p>
                 <div class="price">$39.99</div>
-                <a href="YOUR_AFFILIATE_LINK_1" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B07GZD5T75?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Tracking Products -->
         <div class="product-card" data-category="tracking">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Fitness+Watch" alt="Fitness Tracker Watch">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/progress_new.jpg" alt="Fitness Tracker Watch" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Fitness Tracker Watch</h3>
                 <p>24/7 heart rate, sleep, and activity tracking with GPS and music control.</p>
                 <div class="price">$89.99</div>
-                <a href="YOUR_AFFILIATE_LINK_2" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZ1111?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Exercise Products -->
         <div class="product-card" data-category="exercise">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Yoga+Mat" alt="Premium Yoga Mat">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/Exercise.jpg" alt="Premium Yoga Mat" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Premium Yoga Mat</h3>
                 <p>Non-slip, eco-friendly mat with carrying strap for all workout types.</p>
                 <div class="price">$34.99</div>
-                <a href="YOUR_AFFILIATE_LINK_3" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZ2222?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Nutrition Products -->
         <div class="product-card" data-category="nutrition">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Protein+Shaker" alt="Protein Shaker Bottle">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/meal.jpg" alt="Protein Shaker Bottle" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Protein Shaker Bottle</h3>
                 <p>Durable shaker with measurement marks and mixer ball inside.</p>
                 <div class="price">$19.99</div>
-                <a href="YOUR_AFFILIATE_LINK_4" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZ3333?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Tracking Products -->
         <div class="product-card" data-category="tracking">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Smart+Scale" alt="Smart Body Scale">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/progress_new.jpg" alt="Smart Body Scale" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Smart Body Scale</h3>
                 <p>Track weight, BMI, body fat, muscle mass, and more with app sync.</p>
                 <div class="price">$59.99</div>
-                <a href="YOUR_AFFILIATE_LINK_5" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZ4444?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Exercise Products -->
         <div class="product-card" data-category="exercise">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Dumbbells" alt="Adjustable Dumbbells">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/Exercise.jpg" alt="Adjustable Dumbbells" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Adjustable Dumbbells Set</h3>
                 <p>Space-saving weights with quick-adjust mechanism for strength training.</p>
                 <div class="price">$129.99</div>
-                <a href="YOUR_AFFILIATE_LINK_6" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZ5555?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Hydration Products -->
         <div class="product-card" data-category="hydration">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Water+Filter+Bottle" alt="Water Filter Bottle">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/water.jpg" alt="Water Filter Bottle" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Water Filter Bottle</h3>
                 <p>Built-in filter for clean, purified water on the go. BPA-free and reusable.</p>
                 <div class="price">$29.99</div>
-                <a href="YOUR_AFFILIATE_LINK_7" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZ6666?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Nutrition Products -->
         <div class="product-card" data-category="nutrition">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Food+Scale" alt="Digital Food Scale">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/meal.jpg" alt="Digital Food Scale" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Digital Food Scale</h3>
                 <p>Accurate measurements for precise meal tracking and portion control.</p>
                 <div class="price">$24.99</div>
-                <a href="YOUR_AFFILIATE_LINK_8" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZ7777?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Exercise Products -->
         <div class="product-card" data-category="exercise">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Resistance+Bands" alt="Resistance Bands Set">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/Exercise.jpg" alt="Resistance Bands Set" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Resistance Bands Set</h3>
                 <p>5-piece set with different resistance levels for full-body workouts.</p>
                 <div class="price">$22.99</div>
-                <a href="YOUR_AFFILIATE_LINK_9" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZ8888?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Tracking Products -->
         <div class="product-card" data-category="tracking">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Activity+Ring" alt="Smart Activity Ring">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/progress_new.jpg" alt="Smart Activity Ring" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Smart Activity Ring</h3>
                 <p>Lightweight ring tracker for sleep, steps, and activity monitoring.</p>
                 <div class="price">$79.99</div>
-                <a href="YOUR_AFFILIATE_LINK_10" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZ9999?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Hydration Products -->
         <div class="product-card" data-category="hydration">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Insulated+Tumbler" alt="Insulated Tumbler">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/water.jpg" alt="Insulated Tumbler" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Insulated Tumbler 32oz</h3>
                 <p>Double-walled insulation keeps drinks hot for 12 hours or cold for 24 hours.</p>
                 <div class="price">$34.99</div>
-                <a href="YOUR_AFFILIATE_LINK_11" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZA111?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Nutrition Products -->
         <div class="product-card" data-category="nutrition">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Meal+Prep+Containers" alt="Meal Prep Containers">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/meal.jpg" alt="Meal Prep Containers" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Meal Prep Containers Set</h3>
                 <p>10-piece set with compartments for organized meal planning and storage.</p>
                 <div class="price">$27.99</div>
-                <a href="YOUR_AFFILIATE_LINK_12" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZA222?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Exercise Products -->
         <div class="product-card" data-category="exercise">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Jump+Rope" alt="Speed Jump Rope">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/Exercise.jpg" alt="Speed Jump Rope" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Speed Jump Rope</h3>
                 <p>Adjustable length with ball bearings for smooth, fast rotation and cardio.</p>
                 <div class="price">$17.99</div>
-                <a href="YOUR_AFFILIATE_LINK_13" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZA333?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Tracking Products -->
         <div class="product-card" data-category="tracking">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Bluetooth+Headphones" alt="Fitness Headphones">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/mental_new.jpg" alt="Fitness Headphones" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Wireless Fitness Headphones</h3>
                 <p>Waterproof, noise-canceling with 10-hour battery life for workouts.</p>
                 <div class="price">$69.99</div>
-                <a href="YOUR_AFFILIATE_LINK_14" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZA444?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Nutrition Products -->
         <div class="product-card" data-category="nutrition">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Blender+Bottle" alt="Personal Blender Bottle">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/meal.jpg" alt="Personal Blender Bottle" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Personal Blender Bottle</h3>
                 <p>USB rechargeable portable blender for smoothies and protein shakes on-the-go.</p>
                 <div class="price">$44.99</div>
-                <a href="YOUR_AFFILIATE_LINK_15" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZA555?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Exercise Products -->
         <div class="product-card" data-category="exercise">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Foam+Roller" alt="Massage Foam Roller">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/Exercise.jpg" alt="Massage Foam Roller" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Massage Foam Roller</h3>
                 <p>High-density foam for muscle recovery and deep tissue massage.</p>
                 <div class="price">$32.99</div>
-                <a href="YOUR_AFFILIATE_LINK_16" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZA666?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Hydration Products -->
         <div class="product-card" data-category="hydration">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Electrolyte+Drink+Mix" alt="Electrolyte Drink Mix">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/water.jpg" alt="Electrolyte Drink Mix" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Electrolyte Drink Mix</h3>
                 <p>30-pack of sugar-free electrolyte packets for optimal hydration recovery.</p>
                 <div class="price">$23.99</div>
-                <a href="YOUR_AFFILIATE_LINK_17" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZA777?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Tracking Products -->
         <div class="product-card" data-category="tracking">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Sleep+Tracker" alt="Non-Wearable Sleep Tracker">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/progress_new.jpg" alt="Non-Wearable Sleep Tracker" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Non-Wearable Sleep Tracker</h3>
                 <p>Bed-based tracker for detailed sleep insights without wearing anything.</p>
                 <div class="price">$119.99</div>
-                <a href="YOUR_AFFILIATE_LINK_18" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZA888?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Nutrition Products -->
         <div class="product-card" data-category="nutrition">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Macro+Scale" alt="Nutrition Scale">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/wellness_new.jpg" alt="Nutrition Scale" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Smart Nutrition Scale</h3>
                 <p>App-connected scale that tracks macros and syncs with Mylota automatically.</p>
                 <div class="price">$84.99</div>
-                <a href="YOUR_AFFILIATE_LINK_19" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZA999?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
 
         <!-- Exercise Products -->
         <div class="product-card" data-category="exercise">
-            <div style="position: relative;">
-                <img src="https://placehold.co/250x200/0d9488/ffffff?text=Push+Up+Board" alt="Push Up Board">
+            <div class="product-badge">Syncing Live</div>
+            <div style="position: relative; overflow: hidden; height: 200px;">
+                <img src="assets/Exercise.jpg" alt="Push Up Board" class="product-img">
             </div>
             <div class="product-info">
                 <h3>Multi-Position Push Up Board</h3>
                 <p>Ergonomic handles for varied push-up positions and chest workouts.</p>
                 <div class="price">$28.99</div>
-                <a href="YOUR_AFFILIATE_LINK_20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+                <a href="https://www.amazon.com/dp/B08XYZB111?tag=mylotafit-20" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
     </div>
@@ -413,16 +471,14 @@
 
 <footer>
     © 2025 Mylota Fitness • <a href="privacy.html">Privacy Policy</a> • All Rights Reserved
-    <br><small style="color: #999; margin-top: 10px; display: block;">Mylota Fitness is a participant in the Amazon Associates Program.</small>
+    <br><small style="color: #999; margin-top: 10px; display: block;">Mylota Fitness is a participant in the Amazon Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.</small>
 </footer>
 
 <script>
     function filterProducts(category) {
-        // Update active button
         document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
         event.target.classList.add('active');
 
-        // Filter products
         const products = document.querySelectorAll('.product-card');
         products.forEach(product => {
             if (category === 'all' || product.dataset.category === category) {
@@ -432,7 +488,78 @@
             }
         });
     }
+
+    // Dynamic Amazon Product Sync logic
+    async function syncAmazonProducts() {
+        const productCards = document.querySelectorAll('.product-card');
+        
+        for (const card of productCards) {
+            const affiliateLink = card.querySelector('.btn').getAttribute('href');
+            
+            // Extract ASIN from URL (matches B[0-9A-Z]{9})
+            const asinMatch = affiliateLink.match(/\/dp\/([A-Z0-9]{10})/);
+            if (!asinMatch || !asinMatch[1]) continue;
+            
+            const asin = asinMatch[1];
+            const priceEl = card.querySelector('.price');
+            const imgEl = card.querySelector('.product-img');
+            const titleEl = card.querySelector('h3');
+            const badgeEl = card.querySelector('.product-badge');
+            
+            // Add loading animation class to show visual feedback
+            priceEl.classList.add('sync-loading');
+            imgEl.classList.add('sync-loading');
+            if (badgeEl) badgeEl.innerHTML = '<span style="display:inline-block; width:8px; height:8px; border-radius:50%; background-color:#ef4444; animation: blink 1s infinite;"></span> Syncing...';
+            
+            try {
+                const response = await fetch(`/api/amazon-sync?asin=${asin}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // Remove loading classes
+                    priceEl.classList.remove('sync-loading');
+                    imgEl.classList.remove('sync-loading');
+                    
+                    // Update content with real synced data
+                    if (data.price) priceEl.textContent = data.price;
+                    if (data.image) {
+                        imgEl.src = data.image;
+                        imgEl.style.opacity = 0.5;
+                        imgEl.onload = () => { imgEl.style.opacity = 1; };
+                    }
+                    if (data.title && data.source === "amazon-live") {
+                        titleEl.textContent = data.title;
+                    }
+                    
+                    if (badgeEl) {
+                        badgeEl.innerHTML = '✓ Synced';
+                        badgeEl.style.backgroundColor = '#10b981'; // Green for success
+                    }
+                }
+            } catch (err) {
+                console.error(`Failed to sync ASIN ${asin}:`, err);
+                priceEl.classList.remove('sync-loading');
+                imgEl.classList.remove('sync-loading');
+                if (badgeEl) {
+                    badgeEl.innerHTML = '⚠ Cached';
+                    badgeEl.style.backgroundColor = '#f59e0b'; // Amber for cached
+                }
+            }
+        }
+    }
+
+    // Run sync when page finishes loading
+    window.addEventListener('DOMContentLoaded', () => {
+        syncAmazonProducts();
+    });
 </script>
+
+<style>
+    @keyframes blink {
+        0%, 100% { opacity: 0.2; }
+        50% { opacity: 1; }
+    }
+</style>
 
 </body>
 </html>

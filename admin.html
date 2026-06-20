@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard – Mylota Fitness</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/logo_new.png">
+    <style>
+        .admin-hero {
+            background: linear-gradient(135deg, #0d9488, #ccfbf1);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .admin-container {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .admin-form h3 {
+            color: #0d9488;
+            margin-bottom: 25px;
+            font-size: 1.6em;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #374151;
+            font-weight: 600;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-family: Arial, sans-serif;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            min-height: 180px;
+            resize: vertical;
+        }
+        .publish-btn {
+            width: 100%;
+            padding: 12px;
+            background: #0d9488;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background 0.3s;
+            box-shadow: 0 2px 4px rgba(13, 148, 136, 0.2);
+        }
+        .publish-btn:hover {
+            background: #0a7367;
+        }
+        .success-message {
+            display: none;
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid #a7f3d0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Mylota Fitness</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="about.html">About</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="shop.html">Shop</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<section class="admin-hero">
+    <h2>Admin Portal</h2>
+    <p>Publish fresh content to the Mylota Fitness blog</p>
+</section>
+
+<section class="section">
+    <div class="admin-container">
+        <div id="success-alert" class="success-message">
+            🎉 Article published successfully! Redirecting to blog...
+        </div>
+        
+        <form class="admin-form" id="publish-form" onsubmit="publishArticle(event)">
+            <h3>✍️ Create New Blog Post</h3>
+            
+            <div class="form-group">
+                <label for="title">Article Title</label>
+                <input type="text" id="title" placeholder="e.g. 5 Habits of Highly Energetic People" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" required>
+                    <option value="Habits">Habits</option>
+                    <option value="Tracking">Tracking</option>
+                    <option value="Hydration">Hydration</option>
+                    <option value="Sleep">Sleep & Activity</option>
+                    <option value="Nutrition">Nutrition</option>
+                    <option value="Mindset">Mindset</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="summary">Short Summary</label>
+                <input type="text" id="summary" placeholder="e.g. Small consistent adjustments to elevate daily productivity." required>
+            </div>
+            
+            <div class="form-group">
+                <label for="content">Article Body (HTML Supported)</label>
+                <textarea id="content" placeholder="Write your full article here..." required></textarea>
+            </div>
+            
+            <button type="submit" class="publish-btn">Publish Article</button>
+        </form>
+    </div>
+</section>
+
+<footer>
+    © 2025 Mylota Fitness • <a href="privacy.html">Privacy Policy</a> • All Rights Reserved
+    <br><small style="color: #999; margin-top: 10px; display: block;">Mylota Fitness is a participant in the Amazon Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.</small>
+</footer>
+
+<script>
+    async function publishArticle(event) {
+        event.preventDefault();
+        
+        const title = document.getElementById('title').value;
+        const category = document.getElementById('category').value;
+        const summary = document.getElementById('summary').value;
+        const content = document.getElementById('content').value;
+        
+        const publishButton = document.querySelector('.publish-btn');
+        publishButton.textContent = 'Publishing...';
+        publishButton.disabled = true;
+        
+        try {
+            const response = await fetch('/api/publish', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ title, category, summary, content })
+            });
+            
+            const result = await response.json();
+            
+            if (result.success) {
+                document.getElementById('success-alert').style.display = 'block';
+                document.getElementById('publish-form').reset();
+                
+                setTimeout(() => {
+                    window.location.href = 'blog.html';
+                }, 2000);
+            } else {
+                alert('Publish failed: ' + result.error);
+                publishButton.textContent = 'Publish Article';
+                publishButton.disabled = false;
+            }
+        } catch (err) {
+            alert('Publish failed: ' + err.message);
+            publishButton.textContent = 'Publish Article';
+            publishButton.disabled = false;
+        }
+    }
+</script>
+
+</body>
+</html>

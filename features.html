@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Features – Mylota Fitness</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/logo_new.png">
     <style>
         .feature-detail {
             display: grid;
@@ -21,9 +24,21 @@
             direction: ltr;
         }
         .feature-detail img {
+            display: block;
+            margin: 0 auto;
             width: 100%;
-            border-radius: 12px;
+            height: auto;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .feature-detail img.phone-screenshot {
+            max-width: 240px;
+            border: 8px solid #1e293b;
+            border-radius: 22px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+        }
+        .feature-detail img:not(.phone-screenshot) {
+            max-width: 320px;
+            border-radius: 12px;
         }
         .feature-detail h3 {
             color: #0d9488;
@@ -42,7 +57,7 @@
             line-height: 1.6;
         }
         .feature-detail li:before {
-            content: "✓";
+            content: "\2713";
             position: absolute;
             left: 0;
             color: #0d9488;
@@ -93,7 +108,7 @@
                 <li>Share achievements with friends</li>
             </ul>
         </div>
-        <img src="https://placehold.co/400x300/ccfbf1/0d9488?text=Task+Tracking" alt="Task Tracking">
+        <img src="assets/wellness_new.jpg" alt="Mylota Smart Task Tracking Dashboard" class="phone-screenshot">
     </div>
 
     <div class="feature-detail">
@@ -107,7 +122,7 @@
                 <li>Create shopping lists automatically</li>
             </ul>
         </div>
-        <img src="https://placehold.co/400x300/dcfce7/166534?text=Meal+Planner" alt="Meal Planner">
+        <img src="assets/meal.jpg" alt="Mylota Meal Planner">
     </div>
 
     <div class="feature-detail">
@@ -121,7 +136,7 @@
                 <li>Sync with wearable devices</li>
             </ul>
         </div>
-        <img src="https://placehold.co/400x300/e0f2fe/0c4a6e?text=Hydration" alt="Hydration">
+        <img src="assets/water.jpg" alt="Mylota Hydration Alerts">
     </div>
 
     <div class="feature-detail">
@@ -135,7 +150,7 @@
                 <li>Integrate with fitness trackers</li>
             </ul>
         </div>
-        <img src="https://placehold.co/400x300/fef9c3/713f12?text=Sleep+Timer" alt="Sleep Timer">
+        <img src="assets/progress_new.jpg" alt="Mylota Sleep Goal and Progress Screen" class="phone-screenshot">
     </div>
 
     <div class="feature-detail">
@@ -144,12 +159,26 @@
             <p>Stay motivated with engaging challenges and community competitions.</p>
             <ul>
                 <li>Join weekly fitness challenges</li>
-                <li>Compete with friends leaderboards</li>
+                <li>Compete on active leaderboards</li>
                 <li>Earn badges and achievements</li>
                 <li>Win exclusive rewards</li>
             </ul>
         </div>
-        <img src="https://placehold.co/400x300/fecaca/991b1b?text=Challenges" alt="Challenges">
+        <img src="assets/challeng_new.jpg" alt="Mylota Weekly Challenge Leaderboard Screen" class="phone-screenshot">
+    </div>
+
+    <div class="feature-detail">
+        <div>
+            <h3>🧠 Mental Stimulation & Connection</h3>
+            <p>Maintain your mental well-being and stay connected with family and friends.</p>
+            <ul>
+                <li>Schedule calls to family and friends</li>
+                <li>Set reminders to check in with your spouse/partner</li>
+                <li>Stay mentally active with positive tasks</li>
+                <li>Integrate mental exercises with physical goals</li>
+            </ul>
+        </div>
+        <img src="assets/mental_new.jpg" alt="Mylota Mental Stimulation Calls Configuration Screen" class="phone-screenshot">
     </div>
 
     <div class="feature-detail">
@@ -163,21 +192,28 @@
                 <li>Privacy guaranteed</li>
             </ul>
         </div>
-        <img src="https://placehold.co/400x300/f3e8ff/7c3aed?text=Cloud+Sync" alt="Cloud Sync">
+        <img src="assets/splash.jpg" alt="Mylota Cloud Sync and Startup Splash Screen" class="phone-screenshot">
     </div>
 </section>
 
 <section class="section" style="background-color: #f0fdf4; border-radius: 12px;">
     <h2 style="text-align: center; color: #0d9488;">Ready to Get Started?</h2>
     <p style="text-align: center; margin-bottom: 30px;">Download Mylota today and transform your fitness journey.</p>
-    <div style="text-align: center;">
-        <a class="btn" href="#" style="background-color: #0d9488; color: white; padding: 12px 30px; margin: 10px;">Download Now</a>
+    <div style="text-align: center; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 20px;">
+        <a class="button" href="https://apps.apple.com/gb/app/mylota-fitness/id6760560528" style="background-color: #1a1a1a; color: white; padding: 12px 30px;" target="_blank" rel="noopener noreferrer">
+            <svg style="width:18px; height:18px; fill:currentColor; vertical-align:middle; margin-right:8px; margin-top:-3px;" viewBox="0 0 24 24"><path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,22C14.32,22.05 13.89,21.24 12.37,21.24C10.84,21.24 10.37,21.97 9.1,22.03C7.79,22.08 6.8,20.71 5.96,19.5C4.26,17 2.96,12.39 4.7,9.37C5.57,7.87 7.1,6.92 8.76,6.9C10,6.87 11.19,7.74 11.97,7.74C12.75,7.74 14.17,6.7 15.69,6.85C16.33,6.88 18.12,7.11 19.31,8.85C19.22,8.91 17.06,10.17 17.08,12.68C17.1,15.7 19.74,16.7 19.77,16.72C19.75,16.78 19.34,18.2 18.71,19.5M15.97,4.17C16.63,3.37 17.07,2.28 16.95,1C16,1.04 14.9,1.6 14.24,2.38C13.68,3.04 13.19,4.14 13.34,5.39C14.39,5.47 15.4,4.88 15.97,4.17Z"/></svg>
+            Download for iOS
+        </a>
+        <a class="button teal-bg" href="https://play.google.com/store/apps/details?id=com.fitness.mylota" style="color: white; padding: 12px 30px;" target="_blank" rel="noopener noreferrer">
+            <svg style="width:18px; height:18px; fill:currentColor; vertical-align:middle; margin-right:8px; margin-top:-3px;" viewBox="0 0 24 24"><path d="M3,5.27V18.73L16.55,12L3,5.27M17.87,11.33L19.5,12.18L17.87,13L3.82,20L17.87,13L21,12L17.87,11L3.82,4L17.87,11.33Z"/></svg>
+            Download for Android
+        </a>
     </div>
 </section>
 
 <footer>
     © 2025 Mylota Fitness • <a href="privacy.html">Privacy Policy</a> • All Rights Reserved
-    <br><small style="color: #999; margin-top: 10px; display: block;">Mylota Fitness is a participant in the Amazon Associates Program.</small>
+    <br><small style="color: #999; margin-top: 10px; display: block;">Mylota Fitness is a participant in the Amazon Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.</small>
 </footer>
 
 </body>

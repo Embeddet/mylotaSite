@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "How to Build Healthy Habits",
+    "summary": "Small steps lead to big results.",
+    "content": "Building healthy habits is about consistency, not intensity. Start small: drink an extra glass of water today, walk for 10 minutes, or sleep 15 minutes earlier. Over time, these small actions compound into major lifestyle transformations. The key is to design your environment to make good habits easy and bad habits friction-filled.",
+    "date": "June 15, 2026",
+    "category": "Habits"
+  },
+  {
+    "id": 2,
+    "title": "Benefits of Daily Tracking",
+    "summary": "Awareness leads to consistency.",
+    "content": "When you track your daily habits, you bring awareness to your routine. Awareness is the first step toward change. Tracking meals, workouts, and water consumption helps you spot patterns, stay accountable, and celebrate minor milestones. Studies show that people who track their progress are twice as likely to achieve their long-term fitness goals.",
+    "date": "June 12, 2026",
+    "category": "Tracking"
+  },
+  {
+    "id": 3,
+    "title": "Why Water Intake Matters",
+    "summary": "Stay hydrated for better health.",
+    "content": "Water is the foundation of energy, focus, and recovery. Proper hydration helps regulate body temperature, lubricates joints, and delivers nutrients to cells. Keep a water bottle handy and aim for your daily personal targets. Even a 2% drop in hydration can lead to a significant decrease in cognitive and physical performance.",
+    "date": "June 10, 2026",
+    "category": "Hydration"
+  }
+]

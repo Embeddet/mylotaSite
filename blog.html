@@ -1,8 +1,172 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog – Mylota Fitness</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/logo_new.png">
+    <style>
+        .blog-hero {
+            background: linear-gradient(135deg, #0d9488, #ccfbf1);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .blog-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid #0d9488;
+        }
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(13, 148, 136, 0.15);
+        }
+        .blog-category {
+            font-size: 0.8em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #0d9488;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .blog-card h3 {
+            margin: 0 0 10px 0;
+            color: #1e293b;
+            font-size: 1.3em;
+            line-height: 1.4;
+        }
+        .blog-card p {
+            color: #64748b;
+            font-size: 0.95em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .blog-meta {
+            font-size: 0.8em;
+            color: #94a3b8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 15px;
+        }
+        .read-more {
+            color: #0d9488;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .read-more::after {
+            content: "→";
+            transition: transform 0.2s;
+        }
+        .blog-card:hover .read-more::after {
+            transform: translateX(4px);
+        }
+
+        /* Reading Modal Styles */
+        .article-modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            overflow-y: auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .article-modal.active {
+            display: flex;
+        }
+        .article-modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            max-width: 750px;
+            width: 100%;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+            animation: modalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: left;
+        }
+        @keyframes modalSlideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .article-modal-close {
+            position: absolute;
+            right: 25px;
+            top: 20px;
+            font-size: 32px;
+            font-weight: 700;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .article-modal-close:hover {
+            color: #1e293b;
+        }
+        .article-modal-category {
+            display: inline-block;
+            background-color: #ccfbf1;
+            color: #0f766e;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.85em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+        .article-modal-title {
+            font-size: 2.2em;
+            color: #1e293b;
+            margin-top: 0;
+            margin-bottom: 15px;
+            line-height: 1.25;
+        }
+        .article-modal-date {
+            color: #94a3b8;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+            display: block;
+        }
+        .article-modal-body {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #334155;
+        }
+        .article-modal-body p {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
 
@@ -13,35 +177,179 @@
         <a href="features.html">Features</a>
         <a href="about.html">About</a>
         <a href="pricing.html">Pricing</a>
-        <a href="blog.html">Blog</a>
+        <a href="shop.html">Shop</a>
+        <a href="blog.html" class="active">Blog</a>
         <a href="contact.html">Contact</a>
     </nav>
 </header>
 
+<section class="blog-hero">
+    <h2>Mylota Fitness Blog</h2>
+    <p>Expert tips, insights, and stories to support your habit-building journey</p>
+</section>
+
 <section class="section">
-    <h2>Latest Articles</h2>
+    <h2 style="text-align: center; margin-bottom: 10px;">Latest Articles</h2>
+    <p style="text-align: center; color: #64748b; margin-bottom: 40px;">Click any card to read the full article.</p>
 
-    <div class="grid">
-        <div class="card">
-            <h3>How to Build Healthy Habits</h3>
-            <p>Small steps lead to big results.</p>
+    <div class="blog-grid" id="blog-grid">
+        <!-- Static Default Fallbacks (will be replaced by JSON load) -->
+        <div class="blog-card" onclick="openArticle(1)">
+            <div>
+                <div class="blog-category">Habits</div>
+                <h3>How to Build Healthy Habits</h3>
+                <p>Building healthy habits is about consistency, not intensity. Start small: drink an extra glass of water today, walk for 10 minutes, or sleep 15 minutes earlier.</p>
+            </div>
+            <div class="blog-meta">
+                <span>June 15, 2026</span>
+                <span class="read-more">Read</span>
+            </div>
         </div>
 
-        <div class="card">
-            <h3>Benefits of Daily Tracking</h3>
-            <p>Awareness leads to consistency.</p>
+        <div class="blog-card" onclick="openArticle(2)">
+            <div>
+                <div class="blog-category">Tracking</div>
+                <h3>Benefits of Daily Tracking</h3>
+                <p>When you track your daily habits, you bring awareness to your routine. Awareness is the first step toward change. Tracking meals, workouts, and water helps you spot patterns.</p>
+            </div>
+            <div class="blog-meta">
+                <span>June 12, 2026</span>
+                <span class="read-more">Read</span>
+            </div>
         </div>
 
-        <div class="card">
-            <h3>Why Water Intake Matters</h3>
-            <p>Stay hydrated for better health.</p>
+        <div class="blog-card" onclick="openArticle(3)">
+            <div>
+                <div class="blog-category">Hydration</div>
+                <h3>Why Water Intake Matters</h3>
+                <p>Water is the foundation of energy, focus, and recovery. Proper hydration helps regulate body temperature, lubricates joints, and delivers nutrients to cells.</p>
+            </div>
+            <div class="blog-meta">
+                <span>June 10, 2026</span>
+                <span class="read-more">Read</span>
+            </div>
         </div>
     </div>
 </section>
 
 <footer>
     © 2025 Mylota Fitness • <a href="privacy.html">Privacy Policy</a> • All Rights Reserved
+    <br><small style="color: #999; margin-top: 10px; display: block;">Mylota Fitness is a participant in the Amazon Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.</small>
 </footer>
+
+<!-- Reading Modal -->
+<div id="article-modal" class="article-modal">
+    <div class="article-modal-content">
+        <span class="article-modal-close" onclick="closeArticle()">&times;</span>
+        <div class="article-modal-category" id="modal-category">Habits</div>
+        <h2 class="article-modal-title" id="modal-title">Article Title</h2>
+        <span class="article-modal-date" id="modal-date">June 15, 2026</span>
+        <div class="article-modal-body" id="modal-body">
+            Article body goes here...
+        </div>
+    </div>
+</div>
+
+<script>
+    let blogPosts = [];
+
+    // Fallback static posts if fetch fails
+    const defaultPosts = [
+        {
+            id: 1,
+            title: "How to Build Healthy Habits",
+            summary: "Small steps lead to big results.",
+            content: "Building healthy habits is about consistency, not intensity. Start small: drink an extra glass of water today, walk for 10 minutes, or sleep 15 minutes earlier. Over time, these small actions compound into major lifestyle transformations. The key is to design your environment to make good habits easy and bad habits friction-filled.",
+            date: "June 15, 2026",
+            category: "Habits"
+        },
+        {
+            id: 2,
+            title: "Benefits of Daily Tracking",
+            summary: "Awareness leads to consistency.",
+            content: "When you track your daily habits, you bring awareness to your routine. Awareness is the first step toward change. Tracking meals, workouts, and water consumption helps you spot patterns, stay accountable, and celebrate minor milestones. Studies show that people who track their progress are twice as likely to achieve their long-term fitness goals.",
+            date: "June 12, 2026",
+            category: "Tracking"
+        },
+        {
+            id: 3,
+            title: "Why Water Intake Matters",
+            summary: "Stay hydrated for better health.",
+            content: "Water is the foundation of energy, focus, and recovery. Proper hydration helps regulate body temperature, lubricates joints, and delivers nutrients to cells. Keep a water bottle handy and aim for your daily personal targets. Even a 2% drop in hydration can lead to a significant decrease in cognitive and physical performance.",
+            date: "June 10, 2026",
+            category: "Hydration"
+        }
+    ];
+
+    async function loadBlogPosts() {
+        try {
+            // Disable caching to get fresh published posts immediately
+            const response = await fetch('/blog-posts.json?t=' + Date.now());
+            if (response.ok) {
+                blogPosts = await response.json();
+                renderBlogPosts(blogPosts);
+            } else {
+                blogPosts = defaultPosts;
+                renderBlogPosts(blogPosts);
+            }
+        } catch (err) {
+            console.error("Failed to load blog posts json, using fallbacks:", err);
+            blogPosts = defaultPosts;
+            renderBlogPosts(blogPosts);
+        }
+    }
+
+    function renderBlogPosts(posts) {
+        const grid = document.getElementById('blog-grid');
+        grid.innerHTML = '';
+        
+        posts.forEach(post => {
+            const card = document.createElement('div');
+            card.className = 'blog-card';
+            card.onclick = () => openArticle(post.id);
+            
+            card.innerHTML = `
+                <div>
+                    <div class="blog-category">${post.category}</div>
+                    <h3>${post.title}</h3>
+                    <p>${post.summary}</p>
+                </div>
+                <div class="blog-meta">
+                    <span>${post.date}</span>
+                    <span class="read-more">Read</span>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    function openArticle(id) {
+        const post = blogPosts.find(p => p.id === id);
+        if (!post) return;
+        
+        document.getElementById('modal-category').textContent = post.category;
+        document.getElementById('modal-title').textContent = post.title;
+        document.getElementById('modal-date').textContent = post.date;
+        document.getElementById('modal-body').innerHTML = post.content.replace(/\n/g, '<br><br>');
+        
+        document.getElementById('article-modal').classList.add('active');
+    }
+
+    function closeArticle() {
+        document.getElementById('article-modal').classList.remove('active');
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        const modal = document.getElementById('article-modal');
+        if (event.target == modal) {
+            closeArticle();
+        }
+    }
+
+    // Run on startup
+    window.onload = loadBlogPosts;
+</script>
 
 </body>
 </html>
