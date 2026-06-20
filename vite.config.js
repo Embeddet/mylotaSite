@@ -190,18 +190,25 @@ export default defineConfig({
                 }
                 
                 // 2. Scrape Image URL
-                const imageRegex = /"large"\s*:\s*"([^"]+)"/i;
-                const imageMatch = html.match(imageRegex);
-                let scrapedImage = null;
-                if (imageMatch && imageMatch[1]) {
-                  scrapedImage = imageMatch[1];
-                } else {
-                  const landingImageRegex = /data-old-hires="([^"]+)"/i;
-                  const landingImageMatch = html.match(landingImageRegex);
-                  if (landingImageMatch && landingImageMatch[1]) {
-                    scrapedImage = landingImageMatch[1];
-                  }
-                }
+                 let scrapedImage = null;
+                 const hiResRegex = /"hiRes"\s*:\s*"([^"]+)"/i;
+                 const hiResMatch = html.match(hiResRegex);
+                 
+                 if (hiResMatch && hiResMatch[1]) {
+                   scrapedImage = hiResMatch[1];
+                 } else {
+                   const imageRegex = /"large"\s*:\s*"([^"]+)"/i;
+                   const imageMatch = html.match(imageRegex);
+                   if (imageMatch && imageMatch[1]) {
+                     scrapedImage = imageMatch[1];
+                   } else {
+                     const landingImageRegex = /data-old-hires="([^"]+)"/i;
+                     const landingImageMatch = html.match(landingImageRegex);
+                     if (landingImageMatch && landingImageMatch[1]) {
+                       scrapedImage = landingImageMatch[1];
+                     }
+                   }
+                 }
                 
                 // 3. Scrape Title
                 const titleRegex = /<span\s+id="productTitle"[^>]*>\s*([^<]+)\s*<\/span>/i;
