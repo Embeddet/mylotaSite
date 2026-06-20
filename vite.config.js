@@ -8,10 +8,10 @@ const __dirname = path.dirname(__filename);
 
 // Pre-mapped mock database for Amazon products to guarantee sync in case of scraping blocks
 const mockAmazonDb = {
-  "B006DDGCI2": { title: "Silentnight Deep Sleep Pillows 2-Pack", price: "£14.99", image: "assets/sleep.jpg" },
+  "B006DDGCI2": { title: "Silentnight Deep Sleep Pillows 2-Pack", price: "£14.99", image: "assets/sleep_pillows.png" },
   "B0BP2DV75V": { title: "Trebo Insulated Water Bottle 1.2L", price: "£19.99", image: "assets/trebo_bottle.png" },
-  "B0FBRYYPWV": { title: "FitVille Men's Extra Wide Running Shoes", price: "£59.99", image: "assets/Exercise.jpg" },
-  "B0G6CVJB1G": { title: "KKTOTO Running Trainers", price: "£21.99", image: "assets/Exercise.jpg" },
+  "B0FBRYYPWV": { title: "FitVille Men's Extra Wide Running Shoes", price: "£59.99", image: "assets/fitville_shoes.png" },
+  "B0G6CVJB1G": { title: "KKTOTO Running Trainers", price: "£21.99", image: "assets/kktoto_trainers.png" },
   "B08XYZ4444": { title: "Smart Body Scale", price: "$59.99", image: "assets/progress_new.jpg" },
   "B08XYZ5555": { title: "Adjustable Dumbbells Set", price: "$129.99", image: "assets/Exercise.jpg" },
   "B08XYZ6666": { title: "Water Filter Bottle", price: "$29.99", image: "assets/water.jpg" },
@@ -247,9 +247,15 @@ export default defineConfig({
                   scrapedTitle = titleMatch[1].trim();
                 }
 
-                // For the Trebo water bottle, force the local high-quality image asset we generated
-                 if (asin === 'B0BP2DV75V') {
+                 // Force local high-quality generated images for the new UK products
+                 if (asin === 'B006DDGCI2') {
+                   scrapedImage = 'assets/sleep_pillows.png';
+                 } else if (asin === 'B0BP2DV75V') {
                    scrapedImage = 'assets/trebo_bottle.png';
+                 } else if (asin === 'B0FBRYYPWV') {
+                   scrapedImage = 'assets/fitville_shoes.png';
+                 } else if (asin === 'B0G6CVJB1G') {
+                   scrapedImage = 'assets/kktoto_trainers.png';
                  }
 
                  // If we got valid scraped info, return it!
