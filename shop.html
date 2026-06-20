@@ -536,8 +536,11 @@
                             imgEl.src = originalSrc;
                             imgEl.style.opacity = 1;
                         };
-                        imgEl.setAttribute('referrerpolicy', 'no-referrer');
-                        imgEl.src = data.image;
+                        if (data.image.startsWith('http')) {
+                            imgEl.src = `/api/image-proxy?url=${encodeURIComponent(data.image)}`;
+                        } else {
+                            imgEl.src = data.image;
+                        }
                     }
                     if (data.title && data.source === "amazon-live") {
                         titleEl.textContent = data.title;

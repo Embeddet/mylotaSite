@@ -128,6 +128,35 @@ export default defineConfig({
             });
             return;
           }
+
+          // 1.8. IMAGE PROXY ROUTE
+          if (url.pathname === '/api/image-proxy' && req.method === 'GET') {
+            const imageUrl = url.searchParams.get('url');
+            if (!imageUrl) {
+              res.writeHead(400, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify({ error: "Missing url parameter" }));
+              return;
+            }
+            try {
+              const imageResponse = await fetch(imageUrl);
+              if (imageResponse.ok) {
+                const contentType = imageResponse.headers.get('content-type') || 'image/jpeg';
+                const buffer = await imageResponse.arrayBuffer();
+                res.writeHead(200, { 
+                  'Content-Type': contentType,
+                  'Cache-Control': 'public, max-age=86400'
+                });
+                res.end(Buffer.from(buffer));
+              } else {
+                res.writeHead(imageResponse.status);
+                res.end();
+              }
+            } catch (err) {
+              res.writeHead(500, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify({ error: err.message }));
+            }
+            return;
+          }
           
           // 2. AMAZON PRODUCT SYNC API
           if (url.pathname === '/api/amazon-sync' && req.method === 'GET') {
