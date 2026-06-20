@@ -76,6 +76,94 @@
             font-weight: 600;
             border: 1px solid #a7f3d0;
         }
+
+        /* Admin Navigation Tabs */
+        .admin-tabs {
+            display: flex;
+            border-bottom: 2px solid #e5e7eb;
+            margin-bottom: 30px;
+            gap: 15px;
+        }
+        .admin-tab {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .admin-tab.active {
+            color: #0d9488;
+            border-bottom-color: #0d9488;
+        }
+        
+        /* Two-panel File Editor Layout */
+        .editor-layout {
+            display: flex;
+            gap: 25px;
+            min-height: 500px;
+        }
+        .file-sidebar {
+            width: 220px;
+            border-right: 1px solid #e5e7eb;
+            padding-right: 20px;
+            flex-shrink: 0;
+        }
+        .file-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .file-item {
+            padding: 10px 14px;
+            margin-bottom: 8px;
+            background: #f9fafb;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #4b5563;
+            transition: all 0.2s;
+            border: 1px solid #f3f4f6;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .file-item:hover {
+            background: #f0fdf4;
+            color: #0d9488;
+            border-color: #ccfbf1;
+        }
+        .file-item.active {
+            background: #0d9488;
+            color: white;
+            border-color: #0d9488;
+        }
+        .editor-panel {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .editor-textarea {
+            width: 100%;
+            height: 480px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            padding: 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            box-sizing: border-box;
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            resize: vertical;
+        }
+        .editor-textarea:focus {
+            outline: 2px solid #0d9488;
+        }
     </style>
 </head>
 <body>
@@ -99,43 +187,74 @@
 </section>
 
 <section class="section">
-    <div class="admin-container">
+    <div class="admin-container" id="admin-main-container" style="max-width: 700px; margin: 40px auto; padding: 30px; transition: max-width 0.3s ease;">
         <div id="success-alert" class="success-message">
             🎉 Article published successfully! Redirecting to blog...
         </div>
+        <div id="editor-success-alert" class="success-message" style="background-color: #d1fae5; color: #065f46; border-color: #a7f3d0;">
+            🎉 File saved successfully!
+        </div>
+
+        <div class="admin-tabs">
+            <button class="admin-tab active" id="tab-blog" onclick="switchTab('blog')">✍️ Blog Creator</button>
+            <button class="admin-tab" id="tab-editor" onclick="switchTab('editor')">📁 Site File Editor</button>
+        </div>
         
-        <form class="admin-form" id="publish-form" onsubmit="publishArticle(event)">
-            <h3>✍️ Create New Blog Post</h3>
-            
-            <div class="form-group">
-                <label for="title">Article Title</label>
-                <input type="text" id="title" placeholder="e.g. 5 Habits of Highly Energetic People" required>
+        <!-- Blog Creator Panel -->
+        <div id="blog-panel">
+            <form class="admin-form" id="publish-form" onsubmit="publishArticle(event)">
+                <h3>✍️ Create New Blog Post</h3>
+                
+                <div class="form-group">
+                    <label for="title">Article Title</label>
+                    <input type="text" id="title" placeholder="e.g. 5 Habits of Highly Energetic People" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" required>
+                        <option value="Habits">Habits</option>
+                        <option value="Tracking">Tracking</option>
+                        <option value="Hydration">Hydration</option>
+                        <option value="Sleep">Sleep & Activity</option>
+                        <option value="Nutrition">Nutrition</option>
+                        <option value="Mindset">Mindset</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="summary">Short Summary</label>
+                    <input type="text" id="summary" placeholder="e.g. Small consistent adjustments to elevate daily productivity." required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="content">Article Body (HTML Supported)</label>
+                    <textarea id="content" placeholder="Write your full article here..." required></textarea>
+                </div>
+                
+                <button type="submit" class="publish-btn">Publish Article</button>
+            </form>
+        </div>
+
+        <!-- Site File Editor Panel -->
+        <div id="editor-panel" style="display: none;">
+            <h3 style="color: #0d9488; text-align: center; margin-bottom: 25px;">📁 Edit Website Source Code</h3>
+            <div class="editor-layout">
+                <div class="file-sidebar">
+                    <h4 style="margin-top: 0; color: #374151; border-bottom: 2px solid #f3f4f6; padding-bottom: 8px;">Files</h4>
+                    <ul class="file-list" id="file-list-ul">
+                        <li style="color: #999; font-style: italic; padding: 10px;">Loading...</li>
+                    </ul>
+                </div>
+                <div class="editor-panel">
+                    <div style="display: flex; justify-content: space-between; align-items: center; min-height: 24px;">
+                        <span id="active-file-label" style="font-weight: bold; color: #0d9488; font-size: 1.05em;">Select a file to begin editing</span>
+                    </div>
+                    <textarea id="file-content-area" class="editor-textarea" placeholder="File contents will load here..." disabled></textarea>
+                    <button id="save-file-btn" onclick="saveActiveFile()" class="publish-btn" style="margin-top: 5px;" disabled>Save Changes</button>
+                </div>
             </div>
-            
-            <div class="form-group">
-                <label for="category">Category</label>
-                <select id="category" required>
-                    <option value="Habits">Habits</option>
-                    <option value="Tracking">Tracking</option>
-                    <option value="Hydration">Hydration</option>
-                    <option value="Sleep">Sleep & Activity</option>
-                    <option value="Nutrition">Nutrition</option>
-                    <option value="Mindset">Mindset</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="summary">Short Summary</label>
-                <input type="text" id="summary" placeholder="e.g. Small consistent adjustments to elevate daily productivity." required>
-            </div>
-            
-            <div class="form-group">
-                <label for="content">Article Body (HTML Supported)</label>
-                <textarea id="content" placeholder="Write your full article here..." required></textarea>
-            </div>
-            
-            <button type="submit" class="publish-btn">Publish Article</button>
-        </form>
+        </div>
     </div>
 </section>
 
@@ -145,6 +264,120 @@
 </footer>
 
 <script>
+    // Tabs switcher
+    function switchTab(tab) {
+        const container = document.getElementById('admin-main-container');
+        document.querySelectorAll('.admin-tab').forEach(btn => btn.classList.remove('active'));
+        
+        if (tab === 'blog') {
+            document.getElementById('tab-blog').classList.add('active');
+            document.getElementById('blog-panel').style.display = 'block';
+            document.getElementById('editor-panel').style.display = 'none';
+            container.style.maxWidth = '700px';
+        } else {
+            document.getElementById('tab-editor').classList.add('active');
+            document.getElementById('blog-panel').style.display = 'none';
+            document.getElementById('editor-panel').style.display = 'block';
+            container.style.maxWidth = '1000px'; // Expand container width for split editor view
+            loadFilesList();
+        }
+    }
+
+    let activeFileName = '';
+
+    // Load file list
+    async function loadFilesList() {
+        try {
+            const response = await fetch('/api/files');
+            if (response.ok) {
+                const data = await response.json();
+                const listUl = document.getElementById('file-list-ul');
+                listUl.innerHTML = '';
+                
+                data.files.forEach(file => {
+                    const li = document.createElement('li');
+                    li.className = 'file-item';
+                    if (file === activeFileName) li.classList.add('active');
+                    li.innerHTML = `📄 ${file}`;
+                    li.onclick = () => selectFile(file, li);
+                    listUl.appendChild(li);
+                });
+            }
+        } catch (err) {
+            console.error('Failed to load file list:', err);
+        }
+    }
+
+    // Select file and read content
+    async function selectFile(file, element) {
+        document.querySelectorAll('.file-item').forEach(item => item.classList.remove('active'));
+        element.classList.add('active');
+        
+        activeFileName = file;
+        document.getElementById('active-file-label').textContent = `Editing: ${file}`;
+        
+        const contentArea = document.getElementById('file-content-area');
+        contentArea.value = 'Loading file contents...';
+        contentArea.disabled = true;
+        
+        const saveBtn = document.getElementById('save-file-btn');
+        saveBtn.disabled = true;
+        
+        try {
+            const response = await fetch(`/api/files/read?file=${file}`);
+            if (response.ok) {
+                const data = await response.json();
+                contentArea.value = data.content;
+                contentArea.disabled = false;
+                saveBtn.disabled = false;
+            } else {
+                contentArea.value = 'Failed to load file.';
+            }
+        } catch (err) {
+            contentArea.value = 'Error: ' + err.message;
+        }
+    }
+
+    // Save active file content
+    async function saveActiveFile() {
+        if (!activeFileName) return;
+        
+        const contentArea = document.getElementById('file-content-area');
+        const content = contentArea.value;
+        
+        const saveBtn = document.getElementById('save-file-btn');
+        const originalText = saveBtn.textContent;
+        saveBtn.textContent = 'Saving...';
+        saveBtn.disabled = true;
+        
+        try {
+            const response = await fetch('/api/files/save', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ file: activeFileName, content })
+            });
+            
+            const result = await response.json();
+            if (result.success) {
+                const successAlert = document.getElementById('editor-success-alert');
+                successAlert.style.display = 'block';
+                setTimeout(() => {
+                    successAlert.style.display = 'none';
+                }, 3000);
+            } else {
+                alert('Save failed: ' + result.error);
+            }
+        } catch (err) {
+            alert('Save failed: ' + err.message);
+        } finally {
+            saveBtn.textContent = originalText;
+            saveBtn.disabled = false;
+        }
+    }
+
+    // Existing Blog Composer logic
     async function publishArticle(event) {
         event.preventDefault();
         

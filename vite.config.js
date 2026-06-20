@@ -73,6 +73,61 @@ export default defineConfig({
             });
             return;
           }
+
+          // 1.5. GET FILE DIRECTORY & EDITOR API
+          const allowedFiles = [
+            'index.html', 'features.html', 'about.html', 'pricing.html', 
+            'shop.html', 'blog.html', 'contact.html', 'privacy.html', 
+            'style.css', 'blog-posts.json'
+          ];
+
+          if (url.pathname === '/api/files' && req.method === 'GET') {
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ files: allowedFiles }));
+            return;
+          }
+
+          if (url.pathname === '/api/files/read' && req.method === 'GET') {
+            const fileName = url.searchParams.get('file');
+            if (!fileName || !allowedFiles.includes(fileName)) {
+              res.writeHead(400, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify({ error: "Invalid or unauthorized file" }));
+              return;
+            }
+            try {
+              const filePath = path.resolve(__dirname, fileName);
+              const content = fs.readFileSync(filePath, 'utf8');
+              res.writeHead(200, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify({ success: true, file: fileName, content }));
+            } catch (err) {
+              res.writeHead(500, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify({ success: false, error: err.message }));
+            }
+            return;
+          }
+
+          if (url.pathname === '/api/files/save' && req.method === 'POST') {
+            let body = '';
+            req.on('data', chunk => { body += chunk.toString(); });
+            req.on('end', () => {
+              try {
+                const { file: fileName, content } = JSON.parse(body);
+                if (!fileName || !allowedFiles.includes(fileName)) {
+                  res.writeHead(400, { 'Content-Type': 'application/json' });
+                  res.end(JSON.stringify({ error: "Invalid or unauthorized file" }));
+                  return;
+                }
+                const filePath = path.resolve(__dirname, fileName);
+                fs.writeFileSync(filePath, content, 'utf8');
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ success: true }));
+              } catch (err) {
+                res.writeHead(500, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ success: false, error: err.message }));
+              }
+            });
+            return;
+          }
           
           // 2. AMAZON PRODUCT SYNC API
           if (url.pathname === '/api/amazon-sync' && req.method === 'GET') {
