@@ -8,10 +8,10 @@ const __dirname = path.dirname(__filename);
 
 // Pre-mapped mock database for Amazon products to guarantee sync in case of scraping blocks
 const mockAmazonDb = {
-  "B07GZD5T75": { title: "Smart Water Bottle", price: "$39.99", image: "assets/water.jpg" },
-  "B08XYZ1111": { title: "Fitness Tracker Watch", price: "$89.99", image: "assets/progress_new.jpg" },
-  "B08XYZ2222": { title: "Premium Yoga Mat", price: "$34.99", image: "assets/Exercise.jpg" },
-  "B08XYZ3333": { title: "Protein Shaker Bottle", price: "$19.99", image: "assets/meal.jpg" },
+  "B006DDGCI2": { title: "Silentnight Deep Sleep Pillows 2-Pack", price: "£14.99", image: "assets/sleep.jpg" },
+  "B0BP2DV75V": { title: "Mylota Smart Fitness Watch", price: "£49.99", image: "assets/progress_new.jpg" },
+  "B0FBRYYPWV": { title: "FitVille Men's Extra Wide Running Shoes", price: "£59.99", image: "assets/Exercise.jpg" },
+  "B0G6CVJB1G": { title: "KKTOTO Running Trainers", price: "£21.99", image: "assets/Exercise.jpg" },
   "B08XYZ4444": { title: "Smart Body Scale", price: "$59.99", image: "assets/progress_new.jpg" },
   "B08XYZ5555": { title: "Adjustable Dumbbells Set", price: "$129.99", image: "assets/Exercise.jpg" },
   "B08XYZ6666": { title: "Water Filter Bottle", price: "$29.99", image: "assets/water.jpg" },
@@ -77,6 +77,7 @@ export default defineConfig({
           // 2. AMAZON PRODUCT SYNC API
           if (url.pathname === '/api/amazon-sync' && req.method === 'GET') {
             const asin = url.searchParams.get('asin');
+            const domain = url.searchParams.get('domain') || 'amazon.com';
             if (!asin) {
               res.writeHead(400, { 'Content-Type': 'application/json' });
               res.end(JSON.stringify({ error: "Missing ASIN parameter" }));
@@ -101,7 +102,7 @@ export default defineConfig({
               const controller = new AbortController();
               const timeoutId = setTimeout(() => controller.abort(), 3000); // 3-second timeout
               
-              const response = await fetch(`https://www.amazon.com/dp/${asin}`, {
+              const response = await fetch(`https://${domain}/dp/${asin}`, {
                 headers: {
                   'User-Agent': userAgents[Math.floor(Math.random() * userAgents.length)],
                   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -122,7 +123,8 @@ export default defineConfig({
                 let scrapedPrice = null;
                 
                 if (priceMatch && priceMatch[1]) {
-                  scrapedPrice = `$${parseFloat(priceMatch[1]).toFixed(2)}`;
+                  const symbol = domain.endsWith('.co.uk') ? '£' : '$';
+                  scrapedPrice = `${symbol}${parseFloat(priceMatch[1]).toFixed(2)}`;
                 } else {
                   // Fallback price scraping regex
                   const spanPriceRegex = /<span\s+class="a-offscreen">([^<]+)<\/span>/i;
@@ -156,16 +158,32 @@ export default defineConfig({
                 
                 // If we got valid scraped info, return it!
                 if (scrapedPrice && (scrapedImage || scrapedTitle)) {
-                  res.writeHead(200, { 'Content-Type': 'application/json' });
-                  res.end(JSON.stringify({
-                    success: true,
-                    asin,
-                    title: scrapedTitle || defaultMock.title,
-                    price: scrapedPrice,
-                    image: scrapedImage || defaultMock.image,
-                    source: "amazon-live"
-                  }));
-                  return;
+                  // If the scraped price is in a foreign currency, fall back to mock
+                  const isUk = domain.endsWith('.co.uk');
+                  const rawSpanMatch = html.match(/<span\s+class="a-offscreen">([^<]+)<\/span>/i);
+                  const rawSpanPrice = rawSpanMatch ? rawSpanMatch[1] : '';
+                  
+                  let currencyMismatch = false;
+                  if (rawSpanPrice) {
+                    if (isUk && !rawSpanPrice.includes('£') && !rawSpanPrice.includes('GBP')) {
+                      currencyMismatch = true;
+                    } else if (!isUk && !rawSpanPrice.includes('$') && !rawSpanPrice.includes('USD')) {
+                      currencyMismatch = true;
+                    }
+                  }
+                  
+                  if (!currencyMismatch) {
+                    res.writeHead(200, { 'Content-Type': 'application/json' });
+                    res.end(JSON.stringify({
+                      success: true,
+                      asin,
+                      title: scrapedTitle || defaultMock.title,
+                      price: scrapedPrice,
+                      image: scrapedImage || defaultMock.image,
+                      source: "amazon-live"
+                    }));
+                    return;
+                  }
                 }
               }
             } catch (err) {
