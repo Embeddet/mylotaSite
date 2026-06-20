@@ -201,16 +201,16 @@
             </div>
         </div>
 
-        <!-- Tracking Products -->
-        <div class="product-card" data-category="tracking">
+        <!-- Hydration Products -->
+        <div class="product-card" data-category="hydration">
             <div class="product-badge">Syncing Live</div>
             <div style="position: relative; overflow: hidden; height: 200px;">
-                <img src="assets/progress_new.jpg" alt="Mylota Smart Fitness Watch" class="product-img">
+                <img src="assets/water.jpg" alt="Trebo Insulated Water Bottle" class="product-img">
             </div>
             <div class="product-info">
-                <h3>Mylota Smart Fitness Watch</h3>
-                <p>Track heart rate, sleep cycles, workouts and keep notifications at a glance with Mylota app integration.</p>
-                <div class="price">£49.99</div>
+                <h3>Trebo Insulated Water Bottle 1.2L</h3>
+                <p>Double-walled vacuum insulated stainless steel water bottle with Paracord handle and 3 leakproof lids.</p>
+                <div class="price">£19.99</div>
                 <a href="https://www.amazon.co.uk/gp/aw/d/B0BP2DV75V?_encoding=UTF8&pd_rd_plhdr=t&aaxitk=5acf7dce927622f758c1b5584e9af939&hsa_cr_id=0&qid=1781963507&sr=1-1-e0fa1fdd-d857-4087-adda-5bd576b25987&aref=p8hNLqLQn8&pd_rd_w=zkajM&content-id=amzn1.sym.358d43ed-81c4-455e-87e8-a84d0543fd5e%3Aamzn1.sym.358d43ed-81c4-455e-87e8-a84d0543fd5e&pf_rd_p=358d43ed-81c4-455e-87e8-a84d0543fd5e&pf_rd_r=P5D9EQPVYHRE0V445WDY&pd_rd_wg=KBxDc&pd_rd_r=40c57dd5-0ae3-4c54-9fc3-fb41893d7e48&th=1&linkCode=ll2&tag=mylota04-21&linkId=fb7ab73e98decc7f0dbac58781d287c6&ref_=as_li_ss_tl" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
             </div>
         </div>
@@ -528,9 +528,16 @@
                     // Update content with real synced data
                     if (data.price) priceEl.textContent = data.price;
                     if (data.image) {
-                        imgEl.src = data.image;
+                        const originalSrc = imgEl.src;
                         imgEl.style.opacity = 0.5;
                         imgEl.onload = () => { imgEl.style.opacity = 1; };
+                        imgEl.onerror = () => {
+                            console.warn(`Failed to load image ${data.image}, reverting to original`);
+                            imgEl.src = originalSrc;
+                            imgEl.style.opacity = 1;
+                        };
+                        imgEl.setAttribute('referrerpolicy', 'no-referrer');
+                        imgEl.src = data.image;
                     }
                     if (data.title && data.source === "amazon-live") {
                         titleEl.textContent = data.title;

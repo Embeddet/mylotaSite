@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 // Pre-mapped mock database for Amazon products to guarantee sync in case of scraping blocks
 const mockAmazonDb = {
   "B006DDGCI2": { title: "Silentnight Deep Sleep Pillows 2-Pack", price: "£14.99", image: "assets/sleep.jpg" },
-  "B0BP2DV75V": { title: "Mylota Smart Fitness Watch", price: "£49.99", image: "assets/progress_new.jpg" },
+  "B0BP2DV75V": { title: "Trebo Insulated Water Bottle 1.2L", price: "£19.99", image: "assets/water.jpg" },
   "B0FBRYYPWV": { title: "FitVille Men's Extra Wide Running Shoes", price: "£59.99", image: "assets/Exercise.jpg" },
   "B0G6CVJB1G": { title: "KKTOTO Running Trainers", price: "£21.99", image: "assets/Exercise.jpg" },
   "B08XYZ4444": { title: "Smart Body Scale", price: "$59.99", image: "assets/progress_new.jpg" },
