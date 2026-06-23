@@ -257,6 +257,53 @@
             text-align: center;
             box-sizing: border-box;
         }
+
+        /* Product card styling custom overrides for positioning badge */
+        .product-card {
+            position: relative;
+        }
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #0d9488;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: bold;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Syncing Animation Styles */
+        .sync-loading {
+            position: relative;
+            background-color: #f1f5f9 !important;
+            color: transparent !important;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .sync-loading::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            animation: pulse-loading 1.5s infinite;
+        }
+        @keyframes pulse-loading {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -356,27 +403,66 @@
     
     <div class="grid">
         <div class="card product-card">
-            <img src="https://placehold.co/200x150/0d9488/ffffff?text=Water+Bottle" alt="Smart Water Bottle" width="200" height="150">
-            <h3>Smart Water Bottle</h3>
-            <p>Track your hydration with a smart bottle that syncs with Mylota.</p>
-            <p class="price">$39.99</p>
-            <a href="https://amazon.com/s?k=smart+water+bottle&YOUR_AFFILIATE_ID" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+            <div class="product-badge">Syncing Live</div>
+            <img src="assets/sleep_pillows.png" alt="Silentnight Deep Sleep Pillows" class="product-img">
+            <h3>Silentnight Deep Sleep Pillows 2-Pack</h3>
+            <p>Hypoallergenic pillows designed for extra comfort, supporting healthy sleep cycles and muscle recovery.</p>
+            <p class="price">£14.99</p>
+            <a href="https://www.amazon.co.uk/gp/aw/d/B006DDGCI2?_encoding=UTF8&pd_rd_plhdr=t&aaxitk=03283d744e21e6608153121198069b10&hsa_cr_id=5738613270902&qid=1781963442&sr=1-1-e0fa1fdd-d857-4087-adda-5bd576b25987&aref=4COztAzZID&pd_rd_w=9oegL&content-id=amzn1.sym.358d43ed-81c4-455e-87e8-a84d0543fd5e%3Aamzn1.sym.358d43ed-81c4-455e-87e8-a84d0543fd5e&pf_rd_p=358d43ed-81c4-455e-87e8-a84d0543fd5e&pf_rd_r=NS59BWYED2NFJ65EF4HZ&pd_rd_wg=oEVY6&pd_rd_r=b3fe07df-9c92-4189-9a0c-1b41a21e947b&th=1&linkCode=ll2&tag=mylota04-21&linkId=7a199b8a15db182d6e6fd73148c39400&ref_=as_li_ss_tl" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
         </div>
         
         <div class="card product-card">
-            <img src="https://placehold.co/200x150/0d9488/ffffff?text=Fitness+Tracker" alt="Fitness Tracker Watch" width="200" height="150">
-            <h3>Fitness Tracker Watch</h3>
-            <p>Monitor sleep, steps, and heart rate alongside Mylota tracking.</p>
-            <p class="price">$89.99</p>
-            <a href="https://amazon.com/s?k=fitness+tracker+watch&YOUR_AFFILIATE_ID" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+            <div class="product-badge">Syncing Live</div>
+            <img src="assets/trebo_bottle.png" alt="Trebo Insulated Water Bottle" class="product-img">
+            <h3>Trebo Insulated Water Bottle 1.2L</h3>
+            <p>Double-walled vacuum insulated stainless steel water bottle with Paracord handle and 3 leakproof lids.</p>
+            <p class="price">£19.99</p>
+            <a href="https://www.amazon.co.uk/gp/aw/d/B0BP2DV75V?_encoding=UTF8&pd_rd_plhdr=t&aaxitk=5acf7dce927622f758c1b5584e9af939&hsa_cr_id=0&qid=1781963507&sr=1-1-e0fa1fdd-d857-4087-adda-5bd576b25987&aref=p8hNLqLQn8&pd_rd_w=zkajM&content-id=amzn1.sym.358d43ed-81c4-455e-87e8-a84d0543fd5e%3Aamzn1.sym.358d43ed-81c4-455e-87e8-a84d0543fd5e&pf_rd_p=358d43ed-81c4-455e-87e8-a84d0543fd5e&pf_rd_r=P5D9EQPVYHRE0V445WDY&pd_rd_wg=KBxDc&pd_rd_r=40c57dd5-0ae3-4c54-9fc3-fb41893d7e48&th=1&linkCode=ll2&tag=mylota04-21&linkId=fb7ab73e98decc7f0dbac58781d287c6&ref_=as_li_ss_tl" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
         </div>
         
         <div class="card product-card">
-            <img src="https://placehold.co/200x150/0d9488/ffffff?text=Yoga+Mat" alt="Premium Yoga Mat" width="200" height="150">
-            <h3>Premium Yoga Mat</h3>
-            <p>Perfect for home workouts tracked with Mylota.</p>
-            <p class="price">$34.99</p>
-            <a href="https://amazon.com/s?k=yoga+mat&YOUR_AFFILIATE_ID" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+            <div class="product-badge">Syncing Live</div>
+            <img src="assets/fitville_shoes.png" alt="FitVille Men's Extra Wide Running Shoes" class="product-img">
+            <h3>FitVille Men's Extra Wide Running Shoes</h3>
+            <p>Extra wide design with cushioning sole for ultimate gym workouts, road running and everyday comfort.</p>
+            <p class="price">£59.99</p>
+            <a href="https://www.amazon.co.uk/gp/aw/d/B0FBRYYPWV?_encoding=UTF8&pd_rd_plhdr=t&aaxitk=a4669f04ecaf39c41392a01e74633dbe&hsa_cr_id=0&qid=1781963594&sr=1-1-e0fa1fdd-d857-4087-adda-5bd576b25987&aref=Shdpfb5c3J&pd_rd_w=iPqvR&content-id=amzn1.sym.358d43ed-81c4-455e-87e8-a84d0543fd5e%3Aamzn1.sym.358d43ed-81c4-455e-87e8-a84d0543fd5e&pf_rd_p=358d43ed-81c4-455e-87e8-a84d0543fd5e&pf_rd_r=C579KT3CENVDDWG7RAW3&pd_rd_wg=btG5O&pd_rd_r=924ea067-a899-4103-b829-7007df6c0900&th=1&psc=1&linkCode=ll2&tag=mylota04-21&linkId=7360353b7a04a748d6b9a0a7486106a9&ref_=as_li_ss_tl" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+        </div>
+
+        <div class="card product-card">
+            <div class="product-badge">Syncing Live</div>
+            <img src="assets/kktoto_trainers.png" alt="KKTOTO Running Trainers" class="product-img">
+            <h3>KKTOTO Running Trainers</h3>
+            <p>Lightweight and breathable trainers for running, active workouts, walking, and gym sessions.</p>
+            <p class="price">£21.99</p>
+            <a href="https://www.amazon.co.uk/KKTOTO-Running-Trainers-Walking-Breathable/dp/B0G6CVJB1G?crid=5RTW5HE8YLEW&dib=eyJ2IjoiMSJ9.DNpAPdmdolVMTajqiAtfbOJVN58vzGwAfgrD4b6VvhSL3WKVmaKDRAp_4jbCXeyTTgRh4O3h-bMe0CqqkVrWpmvhDn9HbIUOFrG_gj2sJ2B2yAG-nPI8LrOozjfgDakB4YcMvlmhOTduc_oKtPppYB0qTSDe27R76jt7vKIV5-o_k5rbQexYUnKRdHtB-JuHSvyxIm2Z8jebK4tUpoRKZ8lKncGoPKTj9zJJahpgrfaa79XPKk0UqLs97wC5QfjxYFnyoNOHSOKbiQB3OsXvrfsiiz3FVjjlJ_9cudQ2MNc.x48fxtBpzyUqIuSjKoPXBHRMSOquj-yrcHnVky2ya1g&dib_tag=se&keywords=running%2Bshoes%2Bfor%2Bgym%2Bwomen&qid=1781963678&sprefix=running%2Bshoes%2Bfor%2Bgym%2Caps%2C367&sr=8-1-spons&aref=s4aSQTil1j&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1&psc=1&linkCode=ll2&tag=mylota04-21&linkId=4703d56a971f3d04b920a45ad48dcb22&ref_=as_li_ss_tl" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+        </div>
+
+        <div class="card product-card">
+            <div class="product-badge">Syncing Live</div>
+            <img src="assets/book_memory_improvement.png" alt="Memory Improvement - Secrets of Memory Manipulation" class="product-img">
+            <h3>Memory Improvement - Secrets of Memory Manipulation</h3>
+            <p>Retrain your brain to improve your memory and discover your unlimited memory potential.</p>
+            <p class="price">£9.99</p>
+            <a href="https://www.amazon.co.uk/dp/1950010171?tag=mylota04-21" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+        </div>
+
+        <div class="card product-card">
+            <div class="product-badge">Syncing Live</div>
+            <img src="assets/book_ultimate_brain_games.png" alt="The Ultimate Brain Games And Puzzles Book For Adults" class="product-img">
+            <h3>The Ultimate Brain Games And Puzzles Book For Adults</h3>
+            <p>Tricky but fun brain teasers, trivia challenges, crosswords, word searches and much more to keep your mind young.</p>
+            <p class="price">£11.99</p>
+            <a href="https://www.amazon.co.uk/dp/B0B9QM23D3?tag=mylota04-21" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+        </div>
+
+        <div class="card product-card">
+            <div class="product-badge">Syncing Live</div>
+            <img src="assets/book_399_games.png" alt="399 Games, Puzzles & Trivia Challenges" class="product-img">
+            <h3>399 Games, Puzzles & Trivia Challenges</h3>
+            <p>Specially designed to keep your brain young with puzzles, trivia, and games.</p>
+            <p class="price">£12.99</p>
+            <a href="https://www.amazon.co.uk/dp/0761168257?tag=mylota04-21" class="btn" target="_blank" rel="noopener noreferrer">View on Amazon</a>
         </div>
     </div>
 </section>
@@ -385,6 +471,87 @@
     © 2025 Mylota Fitness • <a href="privacy.html">Privacy Policy</a> • All Rights Reserved
     <br><small style="color: #999; margin-top: 10px; display: block;">Mylota Fitness is a participant in the Amazon Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.</small>
 </footer>
+
+<script>
+    // Dynamic Amazon Product Sync logic
+    async function syncAmazonProducts() {
+        const productCards = document.querySelectorAll('.product-card');
+        
+        for (const card of productCards) {
+            const affiliateLink = card.querySelector('.btn').getAttribute('href');
+            
+            // Extract ASIN from URL (matches B[0-9A-Z]{9})
+            const asinMatch = affiliateLink.match(/\/(?:dp|d)\/([A-Z0-9]{10})/i);
+            if (!asinMatch || !asinMatch[1]) continue;
+            
+            const asin = asinMatch[1];
+            
+            // Extract domain (e.g. www.amazon.co.uk or amazon.com)
+            const domainMatch = affiliateLink.match(/https?:\/\/([^\/]+)/);
+            const domain = domainMatch ? domainMatch[1] : 'amazon.com';
+            
+            const priceEl = card.querySelector('.price');
+            const imgEl = card.querySelector('.product-img');
+            const titleEl = card.querySelector('h3');
+            const badgeEl = card.querySelector('.product-badge');
+            
+            // Add loading animation class to show visual feedback
+            priceEl.classList.add('sync-loading');
+            imgEl.classList.add('sync-loading');
+            if (badgeEl) badgeEl.innerHTML = '<span style="display:inline-block; width:8px; height:8px; border-radius:50%; background-color:#ef4444; animation: blink 1s infinite;"></span> Syncing...';
+            
+            try {
+                const response = await fetch(`/api/amazon-sync?asin=${asin}&domain=${domain}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // Remove loading classes
+                    priceEl.classList.remove('sync-loading');
+                    imgEl.classList.remove('sync-loading');
+                    
+                    // Update content with real synced data
+                    if (data.price) priceEl.textContent = data.price;
+                    if (data.image) {
+                        const originalSrc = imgEl.src;
+                        imgEl.style.opacity = 0.5;
+                        imgEl.onload = () => { imgEl.style.opacity = 1; };
+                        imgEl.onerror = () => {
+                            console.warn(`Failed to load image ${data.image}, reverting to original`);
+                            imgEl.src = originalSrc;
+                            imgEl.style.opacity = 1;
+                        };
+                        if (data.image.startsWith('http')) {
+                            imgEl.src = `/api/image-proxy?url=${encodeURIComponent(data.image)}`;
+                        } else {
+                            imgEl.src = data.image;
+                        }
+                    }
+                    if (data.title && data.source === "amazon-live") {
+                        titleEl.textContent = data.title;
+                    }
+                    
+                    if (badgeEl) {
+                        badgeEl.innerHTML = '✓ Synced';
+                        badgeEl.style.backgroundColor = '#10b981'; // Green for success
+                    }
+                }
+            } catch (err) {
+                console.error(`Failed to sync ASIN ${asin}:`, err);
+                priceEl.classList.remove('sync-loading');
+                imgEl.classList.remove('sync-loading');
+                if (badgeEl) {
+                    badgeEl.innerHTML = '⚠ Cached';
+                    badgeEl.style.backgroundColor = '#f59e0b'; // Amber for cached
+                }
+            }
+        }
+    }
+
+    // Run sync when page finishes loading
+    window.addEventListener('DOMContentLoaded', () => {
+        syncAmazonProducts();
+    });
+</script>
 
 </body>
 </html>
