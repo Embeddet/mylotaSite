@@ -28,9 +28,9 @@ const mockAmazonDb = {
   "B08XYZA888": { title: "Non-Wearable Sleep Tracker", price: "$119.99", image: "assets/progress_new.jpg" },
   "B08XYZA999": { title: "Smart Nutrition Scale", price: "$84.99", image: "assets/wellness_new.jpg" },
   "B08XYZB111": { title: "Multi-Position Push Up Board", price: "$28.99", image: "assets/Exercise.jpg" },
-  "1950010171": { title: "Memory Improvement - Secrets of Memory Manipulation", price: "£9.99", image: "assets/mental_new.jpg" },
-  "B0B9QM23D3": { title: "The Ultimate Brain Games And Puzzles Book For Adults", price: "£11.99", image: "assets/wellness_new.jpg" },
-  "0761168257": { title: "399 Games, Puzzles & Trivia Challenges", price: "£12.99", image: "assets/mental_new.jpg" }
+  "1950010171": { title: "Memory Improvement - Secrets of Memory Manipulation", price: "£9.99", image: "assets/book_memory_improvement.png" },
+  "B0B9QM23D3": { title: "The Ultimate Brain Games And Puzzles Book For Adults", price: "£11.99", image: "assets/book_ultimate_brain_games.png" },
+  "0761168257": { title: "399 Games, Puzzles & Trivia Challenges", price: "£12.99", image: "assets/book_399_games.png" }
 };
 
 export default defineConfig({
@@ -260,11 +260,11 @@ export default defineConfig({
                  } else if (asin === 'B0G6CVJB1G') {
                    scrapedImage = 'assets/kktoto_trainers.png';
                  } else if (asin === '1950010171') {
-                   scrapedImage = 'assets/mental_new.jpg';
+                   scrapedImage = 'assets/book_memory_improvement.png';
                  } else if (asin === 'B0B9QM23D3') {
-                   scrapedImage = 'assets/wellness_new.jpg';
+                   scrapedImage = 'assets/book_ultimate_brain_games.png';
                  } else if (asin === '0761168257') {
-                   scrapedImage = 'assets/mental_new.jpg';
+                   scrapedImage = 'assets/book_399_games.png';
                  }
 
                  // If we got valid scraped info, return it!
